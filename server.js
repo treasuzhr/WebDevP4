@@ -2,22 +2,18 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 
-// Middleware biar bisa baca JSON dari body request
 app.use(express.json());
 
-// Data dummy mahasiswa
 const mahasiswa = [
   { nim: '2410501130', nama: 'Ukhti Zahra Isyana', jurusan: 'Sistem Informasi' },
   { nim: '2410501127', nama: 'Gizza Anandita Fallah', jurusan: 'Sistem Informasi' },
   { nim: '2410501137', nama: 'Nasyia Wulandari', jurusan: 'Sistem Informasi' },
 ];
 
-// GET /mahasiswa
 app.get('/mahasiswa', (req, res) => {
   res.json(mahasiswa);
 });
 
-// GET /mahasiswa/:nim
 app.get('/mahasiswa/:nim', (req, res) => {
   const { nim } = req.params;
   const found = mahasiswa.find((m) => m.nim === nim);
@@ -29,7 +25,6 @@ app.get('/mahasiswa/:nim', (req, res) => {
   res.json(found);
 });
 
-// POST /mahasiswa
 app.post('/mahasiswa', (req, res) => {
   const { nama, nim } = req.body;
 
@@ -42,7 +37,6 @@ app.post('/mahasiswa', (req, res) => {
   });
 });
 
-// Jalankan server
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
 });
