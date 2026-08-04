@@ -8,4 +8,11 @@ const mahasiswaTable = pgTable('mahasiswa', {
   jurusan: varchar('jurusan', { length: 100 }).notNull(),
 });
 
-module.exports = { mahasiswaTable };
+const usersTable = pgTable('users', {
+  id: serial('id').primaryKey(),
+  nama: varchar('nama', { length: 255 }).notNull(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  password: varchar('password', { length: 255 }).notNull(),
+});
+
+module.exports = { mahasiswaTable, usersTable };
