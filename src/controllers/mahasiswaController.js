@@ -51,4 +51,39 @@ const addMahasiswa = async (req, res) => {
   }
 };
 
-module.exports = { getAllMahasiswa, getMahasiswaByNim, addMahasiswa };
+const updateMahasiswa = async (req, res, next) => {
+  try {
+    const { nim } = req.params;
+    const { nama, umur, jurusan } = req.body;
+
+    const existing = await db.select().from(mahasiswaTable).where(eq(mahasiswaTable.nim, nim));
+    if (existing.length === 0) {
+      return res.status(404).json({ pesan: 'Mahasiswa tidak ditemukan' });
+    }
+
+    await db.update(mahasiswaTable).set({ nama, umur, jurusan }).where(eq(mahasiswaTable.nim, nim));
+
+    res.json({ pesan: `Data mahasiswa dengan NIM ${nim} berhasil diupdate` });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const deleteMahasiswa = async (req, res, next) => {
+  try {
+    const { nim } = req.params;
+
+    const existing = await db.select().from(mahasiswaTable).where(eq(mahasiswaTable.nim, nim));
+    if (existing.length === 0) {
+      return res.status(404).json({ pesan: 'Mahasiswa tidak ditemukan' });
+    }
+
+    await db.delete(mahasiswaTable).where(eq(mahasiswaTable.nim, nim));
+
+    res.json({ pesan: `Data mahasiswa dengan NIM ${nim} berhasil dihapus` });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { getAllMahasiswa, getMahasiswaByNim, addMahasiswa, updateMahasiswa, deleteMahasiswa };
