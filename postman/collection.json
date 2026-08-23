@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "5e272105-2a04-4141-93f9-73714fc9fdc9",
+    "name": "WebDev API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56313437",
+    "_collection_link": "https://go.postman.co/collection/56313437-5e272105-2a04-4141-93f9-73714fc9fdc9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nama\": \"Treasuzhr\",\r\n  \"email\": \"treasuzhr@docker.com\",\r\n  \"password\": \"0123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"treasuzhr@docker.com\",\r\n  \"password\": \"0123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Mahasiswa",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/mahasiswa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "mahasiswa"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Mahasiswa by NIM",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/mahasiswa/2410501999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "mahasiswa",
+            "2410501999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Mahasiswa",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{supabase_service_role_api_key_16s0}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nama\": \"Alfachri\",\r\n  \"nim\": \"2410501999\",\r\n  \"umur\": 19,\r\n  \"jurusan\": \"Sistem Informasi\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/mahasiswa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "mahasiswa"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Mahasiswa",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Mahasiswa",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_16s0",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_16s0",
+      "secret": true
+    }
+  ]
+}
